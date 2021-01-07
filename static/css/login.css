@@ -1,0 +1,178 @@
+		body
+		{
+			height: 100vh;
+			margin: 0px;
+			padding: 0px;
+			font-family: sans-serif;
+			background-image: url('../img/bg.jpg');
+			background-repeat:no-repeat;
+			background-size:100% 100%;
+			/*position: relative;*/
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.box{
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 400px;
+			padding: 40px;
+			background: rgba(0,0,0,.8);
+			box-sizing: border-box;
+			box-shadow: 0 15px 25px rgba(0,0,0,.5);
+			border-radius: 10px;
+		}
+		.box h2{
+			color: #fff;
+			margin: 0 0 30px;
+			padding: 0;
+			text-align: center;
+			font-size: 35px;
+		}
+		.wrong{
+			color:red;
+		}
+		.box .inputBox{
+			position: relative;
+		}
+		.box .inputBox input,
+		.box .inputBox select{
+			width: 100%;
+			padding: 10px 0;
+			font-size: 16px;
+			color: #fff;
+			margin-bottom: 30px;
+			border: none;
+			border-bottom: 1px solid white;
+			outline: none;
+			background: transparent;
+		}
+		.box .inputBox label{
+			position: absolute;
+			top:0;
+			left: 0;
+			padding: 10px 0;
+			font-size: 16px;
+			color:white;
+			transition: .5s;
+		}
+		.box .inputBox input:focus~label,.box .inputBox input:valid~label{
+			top:-16px;
+			left: 0;
+			color: #03a9f4;
+			font-size: 11px;
+		}
+		.box .inputBox select:focus~label,.box .inputBox select:valid~label{
+			top:-16px;
+			left: 0;
+			color: #03a9f4;
+			font-size: 11px;
+		}
+		.btn{
+			padding: 10px 20px;
+			background: transparent;
+			border: none;
+			outline: none;
+			color: #03a9f4;
+			position: relative;
+			overflow: hidden;
+			text-transform: uppercase;
+			letter-spacing: 3px;
+		}
+		.btn:hover{
+			background: #03e9f4;
+			border-radius: 5px;
+			color: white;
+			box-shadow: 0 0 5px #03e9f4,
+						0 0 25px #03e9f4,
+						0 0 50px #03e9f4,
+						0 0 100px #03e9f4;
+			transition: all 0.3s linear;
+		}
+		.btn>span{
+			position: absolute;
+		}
+		.btn>span:nth-child(1){
+			width: 100%;
+			height: 2px;
+			background: -webkit-linear-gradient(left,transparent,#03e9f4);
+			left: -100%;
+			top:0px;
+			animation: line1 1s linear infinite;
+		}
+		@keyframes line1{
+			50%,100%{
+				left: 100%;
+			}
+		}
+		.btn>span:nth-child(2){
+			width: 2px;
+			height: 100%;
+			background: -webkit-linear-gradient(top,transparent,#03e9f4);
+			right: 0%;
+			top:-100%;
+			animation: line2 1s  0.25s linear infinite;
+		}
+		@keyframes line2{
+			50%,100%{
+				top: 100%;
+			}
+		}
+		.btn>span:nth-child(3){
+			width: 100%;
+			height: 2px;
+			background: -webkit-linear-gradient(left,#03e9f4,transparent);
+			left: 100%;
+			bottom:0;
+			animation: line3 1s  0.5s linear infinite;
+		}
+		@keyframes line3{
+			50%,100%{
+				left: -100%;
+			}
+		}
+		.btn>span:nth-child(4){
+			width: 2px;
+			height: 100%;
+			background: -webkit-linear-gradient(top,#03e9f4,transparent);
+			left: 0px;
+			top:100%;
+			animation: line4 1s  0.75s linear infinite;
+		}
+		@keyframes line4{
+			50%,100%{
+				top: -100%;
+			}
+		}
+		#btn1{
+			margin-right: 90px;
+		}
+
+		.slogen1{
+			color: White;
+			margin-left: 150px;
+			font-size: 70px;
+            position: relative;
+            top:50px;
+		}
+		.slogen2{
+			position: absolute;
+			bottom: 60px;
+			color: White;
+			right:150px;
+			font-size: 70px;
+			z-index: -1;
+		}
+		#remember-me{
+			margin-bottom: 30px;
+			right: 10px;
+		}
+		#remember-me:checked:after{
+			    background-color: #0f97e7;
+  				  content: "✓";
+    				font-size: 12px;
+		}

@@ -1,0 +1,42 @@
+{% extends 'login_reg_base.html' %}
+{% block main %}
+	<div class="box">
+		<h2 style="color: {{ color }}">Login</h2>
+		<form action="{% url 'login' %}" method="post">
+			<div class="inputBox">
+				<input type="text" name="num" value="{{ num }}" required="" autofocus style="border-bottom-color:{{ else_error }}">
+				<label >UserID</label>
+			</div>
+			<div class="inputBox">
+				<input type="password" name="password" value="{{ password }}" required="" autofocus style="border-bottom-color: {{ else_error }}">
+				<label >Password</label>
+			</div>
+			<div class="inputBox" style="margin-bottom: -10px;">
+				<select name="type" style="border-bottom-color: {{ type_error }}">
+					<option value="1">员工</option>
+					<option value="2">管理员</option>
+				</select>
+				<label>Type</label>
+			</div>
+			<div class="checkbox" style="margin-left: 180px;">
+           		  <label>
+                      <input id="remember-me" type="checkbox" value="remember-me" name="remember"> <span style="color: #fff;">Remember me</span>
+                  </label>
+         	</div>
+			<a href="{% url 'register' %}" style="display: inline-block;">
+                <button class="btn" id='btn1' type="button">Register
+				    <span></span>
+				    <span></span>
+				    <span></span>
+				    <span></span>
+                </button>
+            </a>
+			<button class="btn" href="#" type="submit">Login
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</form>
+	</div>
+{% endblock %}

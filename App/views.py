@@ -24,26 +24,12 @@ def login(request):
         type = request.POST.get('type',None)
         user = auth.authenticate(username = username,password = password)
         if user is not None and user.is_active:
-            ToDoList_new = 0
             if(type == '1' and len(models.Employee.objects.filter(num=username))!=0):
                 auth.login(request,user)
-                kids = models.Child.objects.filter(employee__num=request.user.username)
-                name = models.Employee.objects.get(num=request.user.username).name
-                position = models.Employee.objects.get(num = request.user.username).position
-                res = []
-                for kid in kids:
-                    res.append(kid)
-                context = {
-                    'res': res,
-                    'ToDoList_new':ToDoList_new,
-                    'name' : name,
-                    'position':position
-                }
-
-                return render(request, 'Employee/index.html', context)
+                return HttpResponseRedirect(reverse('Employee:employee_index'))
             elif (type == '2' and User.objects.get(username=username).is_superuser == True):
                 auth.login(request,user)
-                return render(request, 'Employee/index.html', context)
+                return render(request, 'Employee/employee_index.html', context)
             return render(request, 'Login.html', {'num': username, 'password': password, 'type_error': 'red'})
         else:
             return render(request, 'Login.html', {'num': username, 'else_error': 'red'})

@@ -1,0 +1,34 @@
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+          {% if res.has_previous %}
+              <li class="page-item">
+              <a class="page-link" tabindex="-1" href="?pn={{ res.previous_page_number }}">Previous</a>
+              </li>
+          {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+          {% endif %}
+           {% for i in numbers %}
+                {% if i == pn %}
+                    <li class="page-item active" aria-current="page" ><a class="page-link" href="?pn={{ i }}">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?pn={{ i }}">{{ i }}</a></li>
+               {% endif %}
+            {% endfor %}
+
+          {% if res.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?pn={{ res.next_page_number }}">
+                    Next
+                </a>
+              </li>
+          {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    Next
+                </a>
+              </li>
+          {% endif %}
+      </ul>
+    </nav>

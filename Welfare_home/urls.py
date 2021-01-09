@@ -17,13 +17,16 @@ from django.contrib import admin
 from django.urls import path
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from App import views
+import Employee.urls as Employee_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login, name='login'),
     path('register/',views.register,name = 'register'),
     path('CheckID/',views.CheckID,name = 'CheckID'),
-    path('logout/',views.logout,name='logout')
+    path('logout/',views.logout,name='logout'),
+
+    path('employee/',include((Employee_urls,'Employee'),namespace='Employee'))
 ]

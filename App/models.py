@@ -53,6 +53,7 @@ class To_doList(models.Model):
 
     content = models.CharField(verbose_name='内容',max_length=500,blank=False,null=False)
     Is_completed = models.BooleanField(verbose_name='是否完成',default=False)
+    Is_read = models.BooleanField(verbose_name='是否已阅',default=False)
     topic = models.CharField(verbose_name='主题',max_length=500,blank=False,null=False,default="事件")
     #发布者为管理员/或自己
     publisher = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name='publisher')

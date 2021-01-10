@@ -76,7 +76,8 @@ def edit_children(request):
             'Edit':'active',
             'num_pages': num_pages,
             'numbers': numbers,
-            'pn': pn
+            'pn': pn,
+            'edit_children':'active',
         }
 
         return render(request, 'Employee/edit_children.html', context)
@@ -98,4 +99,60 @@ def update_child(request):
     else:
         ress =models.Child.objects.filter(num=num).update(height=height,weight=weight,right_sight=right_sight,left_sight=left_sight,temperature=temperature)
         res['result'] = 'ok'
-    return HttpResponse(json.dumps(res),content_type='application/json')
+    return HttpResponse(res['result'])
+
+def edit_my_info(request):
+
+    if request.method == 'GET':
+        print(request.user.username)
+        name = models.Employee.objects.get(num=request.user.username).name
+        position = models.Employee.objects.get(num=request.user.username).position
+        user = models.Employee.objects.get(num=request.user.username)
+
+        ToDoList_new = 0
+        context = {
+            'name':name,
+            'position':position,
+            'ToDoList_new': ToDoList_new,
+            'user':user,
+            'Edit': 'active',
+            'edit_my':'active',
+        }
+        return render(request,'Employee/edit_my_info.html',context)
+
+def update_my_info(request):
+    str = request.GET.get("str", None)
+    num = request.GET.get("num",None)
+    name = request.GET.get("name",None)
+    ethnic_group = request.GET.get('ethnic_group',None)
+    gender = request.GET.get('gender',None)
+    password = request.GET.get('password',None)
+    confirmed_password = request.GET.get('confirmed_password',None)
+    edu = request.GET.get('edu',None)
+    age = request.GET.get('age',None)
+    position = request.GET.get('position',None)
+    tele = request.GET.get('tele',None)
+    address = request.GET.get('address',None)
+
+    print(password,confirmed_password,age,tele,address)
+
+    if password == '':
+        return HttpResponse('password_error')
+    if confirmed_password == '':
+        return HttpResponse('confirmed_password_error')
+    if age == '':
+        return HttpResponse('age_error')
+    if tele == '':
+        return HttpResponse('tele_error')
+    if address == '':
+        return HttpResponse('address_error')
+    if password != confirmed_password:
+        return HttpResponse('password_dont_match')
+
+    if str == '':
+        str = '无'
+    res = User.objects.filter(username=num).update(password=make_password(password))
+    res = models.Employee.objects.filter(num=num).update(password=password,age=age,tele=tele,address=address,brief_introduction=str)
+
+    auth.logout(request)
+    return HttpResponse('ok')

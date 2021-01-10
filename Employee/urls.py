@@ -6,5 +6,8 @@ import Employee.views as views
 urlpatterns = [
     path('index/',views.index,name = 'employee_index'),
     path('edit_children/',views.edit_children,name = 'employee_edit_children'),
-    path('update_child/',views.update_child,name = 'employee_update_child')
+    path('update_child/',views.update_child,name = 'employee_update_child'),
+
+    path('edit_my_info/',views.edit_my_info,name='employee_edit_my_info'),
+    path('update_my_info/',views.update_my_info,name='employee_update_my_info'),
 ]

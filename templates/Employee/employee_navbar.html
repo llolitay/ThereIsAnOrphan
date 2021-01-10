@@ -19,8 +19,8 @@
                 <li class="{{ Edit }}">
                     <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Edit</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{% url 'Employee:employee_edit_children' %}">Children</a></li>
-                        <li><a href="#">My</a></li>
+                        <li class="{{ edit_children }}"><a href="{% url 'Employee:employee_edit_children' %}">Children</a></li>
+                        <li class="{{ edit_my }}"><a href="{% url 'Employee:employee_edit_my_info' %}">My</a></li>
                     </ul>
                 </li>
 {#                <li>#}

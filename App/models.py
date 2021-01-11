@@ -1,7 +1,7 @@
 from django.db import models
 
 from datetime import datetime
-
+from django.utils import timezone
 #相当于在对应数据库中建表，模型修改后
 #1.执行 python manage.py makemigrations
 #2.执行 python manage.py migrate
@@ -55,6 +55,7 @@ class To_doList(models.Model):
     Is_completed = models.BooleanField(verbose_name='是否完成',default=False)
     Is_read = models.BooleanField(verbose_name='是否已阅',default=False)
     topic = models.CharField(verbose_name='主题',max_length=500,blank=False,null=False,default="事件")
+    Publish_time = models.TimeField(verbose_name='发布时间',default=timezone.now())
     #发布者为管理员/或自己
     publisher = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name='publisher')
 

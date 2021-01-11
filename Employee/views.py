@@ -133,6 +133,7 @@ def update_my_info(request):
     position = request.GET.get('position',None)
     tele = request.GET.get('tele',None)
     address = request.GET.get('address',None)
+    str_origin = request.GET.get('str_origin',None)
 
     print(password,confirmed_password,age,tele,address)
 
@@ -152,7 +153,28 @@ def update_my_info(request):
     if str == '':
         str = '无'
     res = User.objects.filter(username=num).update(password=make_password(password))
-    res = models.Employee.objects.filter(num=num).update(password=password,age=age,tele=tele,address=address,brief_introduction=str)
+    res = models.Employee.objects.filter(num=num).update(password=password,age=age,tele=tele,address=address,brief_introduction=str_origin)
 
     auth.logout(request)
+    return HttpResponse('ok')
+
+def ToDo_List(request):
+    name = models.Employee.objects.get(num=request.user.username).name
+    position = models.Employee.objects.get(num=request.user.username).position
+    ToDoList_new = 0
+    context = {
+        'ToDo_List':'active',
+        'name':name,
+        'position':position,
+        'ToDoList_new':ToDoList_new
+    }
+    return render(request,'Employee/ToDo_List.html',context)
+
+def update_todo_list(request):
+    employee_id = request.GET.get("employee_id", None)
+    publisher_id = request.GET.get("publisher_id", None)
+    topic = request.GET.get("topic", None)
+    content = request.GET.get('content', None)
+
+    print(employee_id,publisher_id,topic,content)
     return HttpResponse('ok')

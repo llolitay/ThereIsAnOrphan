@@ -23,6 +23,9 @@
                         <li class="{{ edit_my }}"><a href="{% url 'Employee:employee_edit_my_info' %}">My</a></li>
                     </ul>
                 </li>
+                <li class="{{ ToDo_List }}">
+                    <a href="{% url 'Employee:employee_ToDo_List' %}"><i class="fa fa-files-o"></i> <span class="nav-label">TodoList</span></a>
+                </li>
 {#                <li>#}
 {#                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning float-right">16/24</span></a>#}
 {#                    <ul class="nav nav-second-level collapse">#}

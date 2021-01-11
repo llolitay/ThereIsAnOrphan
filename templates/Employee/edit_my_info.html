@@ -118,7 +118,7 @@
     </div>
 
     </div>
-    <script src="{% static 'inspinia/js/inspinia.js' %}"></script>
+{#    <script src="{% static 'inspinia/js/inspinia.js' %}"></script>#}
     <script type="text/javascript">
         $(document).ready(function(){
 
@@ -148,6 +148,7 @@
 
         $('#submit_my_info').click(function () {
             var str = $($('.summernote').summernote('code')).text();
+            var str_origin = $('.summernote').summernote('code')
             var num = $('#num').val()
             var name = $('#name').val()
             var ethnic_group = $('#ethnic_group').val()
@@ -162,7 +163,7 @@
 
             $.get('{% url  'Employee:employee_update_my_info'%}',{'str':str,'num':num,'name':name,'ethnic_group':ethnic_group,'edu':edu,
                        'gender':gender,'password':password,'confirmed_password':confirmed_password,'age':age,'position':position,
-                        'tele':tele,'address':address},function (data) {
+                        'tele':tele,'address':address,'str_origin':str_origin},function (data) {
                 if (data == 'password_dont_match'){
                     $('#password_dont_match').css('display','block')
                 }

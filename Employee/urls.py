@@ -10,4 +10,7 @@ urlpatterns = [
 
     path('edit_my_info/',views.edit_my_info,name='employee_edit_my_info'),
     path('update_my_info/',views.update_my_info,name='employee_update_my_info'),
+
+    path('todo_list/',views.ToDo_List,name='employee_ToDo_List'),
+    path('update_todo_list',views.update_todo_list,name='employ_update_todo_list'),
 ]

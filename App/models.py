@@ -55,7 +55,7 @@ class To_doList(models.Model):
     Is_completed = models.BooleanField(verbose_name='是否完成',default=False)
     Is_read = models.BooleanField(verbose_name='是否已阅',default=False)
     topic = models.CharField(verbose_name='主题',max_length=500,blank=False,null=False,default="事件")
-    Publish_time = models.TimeField(verbose_name='发布时间',default=timezone.now())
+    Publish_time = models.DateTimeField(verbose_name='发布时间',default=timezone.now())
     #发布者为管理员/或自己
     publisher = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name='publisher')
 
@@ -64,7 +64,7 @@ class To_doList(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return str(self.id)
     class Meta:
         verbose_name = verbose_name_plural = '待办表'
 

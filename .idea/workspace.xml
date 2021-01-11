@@ -6,8 +6,9 @@
       <change beforePath="$PROJECT_DIR$/App/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/App/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Employee/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Employee/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Employee/edit_my_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employee/edit_my_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Employee/employee_navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employee/employee_navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Welfare_home/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Welfare_home/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Employee/ToDo_List.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employee/ToDo_List.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Employee/employee_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employee/employee_index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,36 +22,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Employee/edit_children.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="216" selection-start-line="216" selection-end-line="222" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Employee/edit_my_info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-261">
-              <caret line="137" column="41" lean-forward="true" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
-              <folding>
-                <element signature="e#6563#6607#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/tests.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+            <state relative-caret-position="310">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -68,22 +43,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index_base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+              <folding>
+                <marker date="1610200124514" expanded="true" signature="10531:10645" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Employee/ToDo_List.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="231" selection-start-line="231" selection-end-line="231" />
-              <folding>
-                <element signature="e#286#313#0#HTML" expanded="true" />
-                <element signature="e#2538#2580#0#HTML" expanded="true" />
-                <element signature="e#2486#2510#0#HTML" expanded="true" />
-                <element signature="e#3609#3634#0#HTML" expanded="true" />
-                <element signature="e#3651#3824#0#HTML" />
-                <element signature="e#3841#4464#0#HTML" />
-                <element signature="e#4481#5181#0#HTML" />
-                <element signature="e#5247#6894#0#HTML" />
-                <element signature="e#6907#8472#0#HTML" />
-                <element signature="e#8496#10421#0#HTML" />
-              </folding>
+            <state relative-caret-position="303">
+              <caret line="196" column="57" selection-start-line="196" selection-start-column="57" selection-end-line="196" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/Employee/edit_children.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2655">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Employee/templatetags/filters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -91,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Employee/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="177" column="4" selection-start-line="177" selection-start-column="4" selection-end-line="177" selection-end-column="4" />
+            <state relative-caret-position="306">
+              <caret line="24" column="92" lean-forward="true" selection-start-line="24" selection-start-column="92" selection-end-line="24" selection-end-column="92" />
               <folding>
                 <element signature="e#0#77#0" expanded="true" />
               </folding>
@@ -101,33 +94,29 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Login.html">
+        <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Employee/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="50" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="50" />
+            <state relative-caret-position="282">
+              <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#1096#1121#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Welfare_home/urls.py">
+        <entry file="file://$PROJECT_DIR$/Employee/models.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Employee/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+            <state relative-caret-position="272">
+              <caret line="16" column="57" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="57" />
               <folding>
-                <element signature="e#636#668#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,8 +127,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -153,24 +142,26 @@
         <option value="$PROJECT_DIR$/Welfare_home/__init__.py" />
         <option value="$PROJECT_DIR$/templates/Employee/index.html" />
         <option value="$PROJECT_DIR$/templates/index_base.html" />
-        <option value="$PROJECT_DIR$/Welfare_home/settings.py" />
         <option value="$PROJECT_DIR$/Welfare_home/urls.py" />
         <option value="$PROJECT_DIR$/templates/navbar.html" />
         <option value="$PROJECT_DIR$/App/views.py" />
         <option value="$PROJECT_DIR$/templates/Employee/page.html" />
         <option value="$PROJECT_DIR$/templates/Employee/edit_children.html" />
         <option value="$PROJECT_DIR$/templates/Employee/employee_index_base.html" />
-        <option value="$PROJECT_DIR$/templates/Employee/employee_index.html" />
         <option value="$PROJECT_DIR$/templates/Employee/edit_my_info.html" />
         <option value="$PROJECT_DIR$/templates/Employee/employee_navbar.html" />
+        <option value="$PROJECT_DIR$/Employee/templatetags/__init__.py" />
+        <option value="$PROJECT_DIR$/Employee/templatetags/filters.py" />
+        <option value="$PROJECT_DIR$/Welfare_home/settings.py" />
         <option value="$PROJECT_DIR$/App/models.py" />
         <option value="$PROJECT_DIR$/Employee/urls.py" />
         <option value="$PROJECT_DIR$/templates/Employee/ToDo_List.html" />
+        <option value="$PROJECT_DIR$/templates/Employee/employee_index.html" />
         <option value="$PROJECT_DIR$/Employee/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -183,6 +174,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -194,11 +186,6 @@
               <item name="Welfare_home" type="b2602c69:ProjectViewProjectNode" />
               <item name="Welfare_home" type="462c0819:PsiDirectoryNode" />
               <item name="App" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Welfare_home" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Welfare_home" type="462c0819:PsiDirectoryNode" />
-              <item name="Employee" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Welfare_home" type="b2602c69:ProjectViewProjectNode" />
@@ -220,7 +207,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,12 +292,16 @@
       <workItem from="1610209332494" duration="2930000" />
       <workItem from="1610274318871" duration="8895000" />
       <workItem from="1610287062808" duration="3033000" />
-      <workItem from="1610341368860" duration="3796000" />
+      <workItem from="1610341368860" duration="4461000" />
+      <workItem from="1610355658124" duration="2418000" />
+      <workItem from="1610360519121" duration="5071000" />
+      <workItem from="1610365798925" duration="8777000" />
+      <workItem from="1610378848841" duration="5656000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62475000" />
+    <option name="totallyTimeSpent" value="85062000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,12 +316,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20978552" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15147454" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21954674" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2592068" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -415,13 +405,6 @@
     <entry file="file://$PROJECT_DIR$/App/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Welfare_home/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/login_reg_base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -439,16 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2924">
-          <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
-          <folding>
-            <marker date="1610200124514" expanded="true" signature="10531:10645" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Employee/page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -456,23 +429,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index.html">
+    <entry file="file://$PROJECT_DIR$/templates/Employee/edit_my_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        <state relative-caret-position="2550">
+          <caret line="150" column="25" selection-start-line="150" selection-start-column="25" selection-end-line="150" selection-end-column="25" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Employee/templatetags/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/App/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/models.py">
+    <entry file="file://$PROJECT_DIR$/Welfare_home/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1275">
+          <caret line="75" column="34" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -493,10 +466,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Employee/templatetags/filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Employee/edit_children.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="216" selection-start-line="216" selection-end-line="222" selection-end-column="14" />
+        <state relative-caret-position="-2655">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Employee/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Employee/ToDo_List.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="196" column="57" selection-start-line="196" selection-start-column="57" selection-end-line="196" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Employee/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -507,49 +517,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Employee/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="50" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="463">
+          <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1610200124514" expanded="true" signature="10531:10645" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Employee/edit_my_info.html">
+    <entry file="file://$PROJECT_DIR$/templates/Employee/employee_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-261">
-          <caret line="137" column="41" lean-forward="true" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
+        <state relative-caret-position="282">
+          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
           <folding>
-            <element signature="e#6563#6607#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Employee/ToDo_List.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="231" selection-start-line="231" selection-end-line="231" />
-          <folding>
-            <element signature="e#286#313#0#HTML" expanded="true" />
-            <element signature="e#2538#2580#0#HTML" expanded="true" />
-            <element signature="e#2486#2510#0#HTML" expanded="true" />
-            <element signature="e#3609#3634#0#HTML" expanded="true" />
-            <element signature="e#3651#3824#0#HTML" />
-            <element signature="e#3841#4464#0#HTML" />
-            <element signature="e#4481#5181#0#HTML" />
-            <element signature="e#5247#6894#0#HTML" />
-            <element signature="e#6907#8472#0#HTML" />
-            <element signature="e#8496#10421#0#HTML" />
+            <element signature="e#1096#1121#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Employee/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="177" column="4" selection-start-line="177" selection-start-column="4" selection-end-line="177" selection-end-column="4" />
+        <state relative-caret-position="306">
+          <caret line="24" column="92" lean-forward="true" selection-start-line="24" selection-start-column="92" selection-end-line="24" selection-end-column="92" />
           <folding>
             <element signature="e#0#77#0" expanded="true" />
           </folding>

@@ -9,6 +9,8 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
 import json
+import  math
+
 
 def index(request):
     kids = models.Child.objects.filter(employee__num=request.user.username)
@@ -18,16 +20,18 @@ def index(request):
     for kid in kids:
         res.append(kid)
 
-    ToDoList_new = 0
+    user = request.user.username
+    todo_list = models.To_doList.objects.filter(employee__num=user,Is_read=False)
+    ToDoList_new = models.To_doList.objects.filter(employee__num=user,Is_read=False).count()
     context = {
         'res': res,
         'ToDoList_new': ToDoList_new,
         'name': name,
         'position': position,
-        'Index': 'active'
+        'Index': 'active',
+        'ToDoList':todo_list,
     }
     return render(request, 'Employee/employee_index.html', context)
-
 def edit_children(request):
 
     if request.method =='GET':
@@ -161,13 +165,49 @@ def update_my_info(request):
 def ToDo_List(request):
     name = models.Employee.objects.get(num=request.user.username).name
     position = models.Employee.objects.get(num=request.user.username).position
+    num = request.user.username
     ToDoList_new = 0
+
+    todoList = models.To_doList.objects.filter(employee__num=request.user.username)
+    for item in todoList:
+        print(item)
+
+    ids = []
+
+    length = len(todoList)
+
+    res = []
+    count = 0
+    temp = {}
+    temp_2 = []
+    for i in range(len(todoList)):
+        if count == 3:
+            res.append(temp_2)
+            temp_2 = []
+            count = 0
+        print(todoList[i])
+        publisher_name = models.Employee.objects.filter(num=todoList[i].publisher.num).values('name')[0]['name']
+        temp.update({'publish_time':todoList[i].Publish_time})
+        temp.update({'publisher_name':publisher_name})
+        temp.update({'topic':todoList[i].topic})
+        temp.update({'content':todoList[i].content})
+        temp.update({'read':todoList[i].Is_read})
+        temp.update({'id':todoList[i].id})
+        ids.append(id)
+        temp_2.append(temp)
+        temp = {}
+        count += 1
+    if len(temp_2) != 0:
+        res.append(temp_2)
     context = {
         'ToDo_List':'active',
         'name':name,
         'position':position,
-        'ToDoList_new':ToDoList_new
+        'ToDoList_new':ToDoList_new,
+        'user':num,
+        'res':res,
     }
+    print(res)
     return render(request,'Employee/ToDo_List.html',context)
 
 def update_todo_list(request):
@@ -177,4 +217,46 @@ def update_todo_list(request):
     content = request.GET.get('content', None)
 
     print(employee_id,publisher_id,topic,content)
+    try:
+        employee = models.Employee.objects.get(num=employee_id)
+    except:
+        return HttpResponse('employee_id_error')
+    if employee_id == '':
+        return HttpResponse('employee_id_error')
+    elif publisher_id == '':
+        return HttpResponse('publisher_id_error')
+    elif topic == '':
+        return HttpResponse('topic_error')
+    elif content == '':
+        return HttpResponse('content_error')
+
+
+    employee = models.Employee.objects.get(num=employee_id)
+    publisher = models.Employee.objects.get(num=publisher_id)
+    info = {
+        'publisher':publisher,
+        'employee':employee,
+        'content':content,
+        'topic':topic,
+    }
+
+    s = models.To_doList.objects.create(**info)
+    return HttpResponse('ok')
+
+def todo_list_read(request):
+    id = request.GET.get('id',None)
+
+    print(id)
+    res = models.To_doList.objects.filter(id=id).values('Is_read')[0]['Is_read']
+
+    if res == True:
+        res = models.To_doList.objects.filter(id=id).update(Is_read=False)
+        return HttpResponse('False')
+    else:
+        res = models.To_doList.objects.filter(id=id).update(Is_read=True)
+        return HttpResponse('True')
+
+def delete_todo_list(request):
+    id = request.GET.get('id',None)
+    res = models.To_doList.objects.filter(id=id).delete()
     return HttpResponse('ok')

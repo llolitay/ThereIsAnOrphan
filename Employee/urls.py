@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('todo_list/',views.ToDo_List,name='employee_ToDo_List'),
     path('update_todo_list',views.update_todo_list,name='employ_update_todo_list'),
+    path('update_todo_list_read',views.todo_list_read,name='employ_update_todo_list_read'),
+    path('delete_update_todo_list',views.delete_todo_list,name='employ_delete_todo_list'),
 ]

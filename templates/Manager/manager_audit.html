@@ -1,0 +1,119 @@
+{% extends 'Manager/manager_index_base.html' %}
+{% block main %}
+            <div class="wrapper wrapper-content  animated fadeInRight">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h2>Audits</h2>
+                            <p>
+                                All audits need to be verified by you.
+                            </p>
+                            <div class="clients-list">
+                            <span class="float-right small text-muted">{{ count }} Audits</span>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="full-height-scroll">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <tbody>
+                                                {% for item in parents%}
+                                                    <tr>
+                                                        <td>{{ forloop.counter }}</td>
+                                                        <td>{{ item.name }}</td>
+                                                        <td> {{ item.address }}</td>
+                                                        <td> {{ item.tele }}</td>
+                                                        <td class="client-status"><a href="#" id=""><span class="label label-primary">查看</span></a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="ibox selected">
+
+                        <div class="ibox-content">
+                            <div class="tab-content">
+                                <div id="contact-1" class="tab-pane active">
+                                    <div class="client-detail">
+                                    <div class="full-height-scroll">
+
+                                        <strong>详细信息</strong>
+
+                                        <ul class="list-group clear-list">
+                                            <li class="list-group-item fist-item" style="margin-top: 30px">
+                                                <span class="float-right" id="num"> 09:00 pm </span>
+                                                Please contact me
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="name"> 10:16 am </span>
+                                                Sign a contract
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="gender"> 08:22 pm </span>
+                                                Open new shop
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="age"> 11:06 pm </span>
+                                                Call back to Sylvia
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="edu"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="weight"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px"
+                                                <span class="float-right" id="married"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="Has_child"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="address"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                            <li class="list-group-item" style="margin-top: 15px">
+                                                <span class="float-right" id="tele"> 12:00 am </span>
+                                                Write a letter to Sandra
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script>
+        $(document).ready(function(){
+
+            $('#num').val("");
+            $('#name').val("");
+            $('#age').val("");
+            $('#edu').val("");
+            $('#weight').val("");
+            $('#gender').val("");
+            $('#tele').val("");
+            $('#address').val("");
+            $('#married').val("");
+            $('#Has_child').val("");
+
+       });
+    </script>
+{% endblock %}

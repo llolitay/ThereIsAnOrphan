@@ -1,0 +1,267 @@
+{% extends 'Manager/manager_index_base.html' %}
+{% block main %}
+    {% load staticfiles %}
+    {% load filters %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <a id="startmodal" data-toggle="modal" data-target="#Modal" href="#">
+            <button class="btn btn-info " id='startmodal' type="button" style="margin-left: 1200px"><i class="fa fa-paste"></i> Add</button>
+        </a>
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">新增待办</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12 order-md-1 offset-sm-0">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label for="lastName">Publisher_number</label>
+                                            <input name="add_publisher" type="text" class="form-control" id="add_publisher" value="{{ user }}">
+                                            <div class="invalid-feedback" id="publisher_num_error">
+                                                Publisher_number is required.
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="lastName">Recipient_number</label>
+                                            <input name="add_recipient" type="text" class="form-control" id="add_recipient" value="{{ item.name }}" required="">
+                                            <div class="invalid-feedback" id="recipient_num_error">
+                                                 Recipient_number is required.
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-11 no-padding" style="margin-top: 20px;margin-left: 20px">
+                                            <label for="lastName">Topic</label>
+                                            <input name="Topic" type="text" class="form-control" id="Topic" value="{{ item.name }}" required="">
+                                            <div class="invalid-feedback" id="topic_error">
+                                                 Topic is required.
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 no-padding" style="margin-top: 20px">
+                                            <label for="lastName">Content</label>
+                                            <textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+                                            <div class="invalid-feedback" id="content_error">
+                                                 Content is required.
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                      <div class="modal-footer">
+                          <span id="tip"> </span>
+                        <button id="close_add" type="button" onclick="close_add('{{ user }}')" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="save_add" type="button" onclick="add('{{ user }}')" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+        {% for row in res %}
+            <div class="row">
+            {%  for item in row %}
+                <div class="col-lg-4">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h3 style="font-weight: bold">
+                                {{ item|get_item:'topic' }}
+                        </h3>
+                        <div class="ibox-tools">
+                            <a class="close-link" id="close_todo" onclick="close_tod('{{ item|get_item:'id' }}')">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="small m-b-xs">
+                             <strong>{{ item|get_item:'publisher_name' }}</strong> <span class="text-muted"><i class="fa fa-clock-o"></i>{{ item|get_item:'publish_time' }}</span>
+                        </div>
+                        <p>
+                            {{ item|get_item:'content' }}
+                        </p>
+                        <div class="row">
+                    <div class="col-md-6">
+                            <h5>Tags:</h5>
+                            {% if item|get_item:'read' == False %}
+                                <button class="btn btn-white btn-xs" onclick="read('{{ item|get_item:'id' }}')" id="is_read is_read_{{ item|get_item:'id' }}" type="button">已阅</button>
+                                <button disabled="disabled" class="btn btn-primary btn-xs" onclick="read('{{ item|get_item:'id' }}')" id="is_read not_is_read_{{ item|get_item:'id' }}" type="button">未读</button>
+                            {% else %}
+                                <button disabled="disabled" class="btn btn-primary btn-xs" onclick="read('{{ item|get_item:'id' }}')" id="is_read is_read_{{ item|get_item:'id' }}" type="button">已阅</button>
+                                <button class="btn btn-white btn-xs" onclick="read('{{ item|get_item:'id' }}')" id="is_read not_is_read_{{ item|get_item:'id' }}" type="button">未读</button>
+                            {% endif %}
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="small text-right">
+                            <h5>Stats:</h5>
+                            {% if item|get_item:'is_complete' == True %}
+                                <button  class="btn btn-primary btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="complete_{{ item|get_item:'id' }}" style="display: inline-block" type="button">已完成</button>
+                                <button class="btn btn-danger btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="not_complete_{{ item|get_item:'id' }}" style="display: none" type="button">未完成</button>
+                            {% else %}
+                                <button class="btn btn-primary btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="complete_{{ item|get_item:'id' }}" style="display: none" type="button">已完成</button>
+                                <button class="btn btn-danger btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="not_complete_{{ item|get_item:'id' }}" style="display: inline-block" type="button">未完成</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+            {%  endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript">
+
+
+        $(function(){
+            $('#Modal').modal("hide");
+        });
+
+
+        $(function () {
+            $('#recipient_num_error').focus(function () {
+                $('#recipient_num_error').css('display','none')
+            })
+            $('#publisher_num_error').focus(function () {
+                $('#publisher_num_error').css('display','none')
+            })
+            $('#topic_error').focus(function () {
+                $('#topic_error').css('display','none')
+            })
+            $('#content_error').focus(function () {
+                $('#content_error').css('display','none')
+            })
+        })
+
+        {#$('#save_add').click(function () {#}
+        {#        var employee_id = $('#add_recipient').val()#}
+        {#        var publisher_id = $('#add_publisher').val()#}
+        {#        var topic = $('#Topic').val()#}
+        {#        var content = $('#content').val()#}
+        {#        $.get('{% url "Employee:employ_update_todo_list" %}',{'employee_id':employee_id,'publisher_id':publisher_id,'topic':topic,#}
+        {#            'content':content},function (data) {#}
+        {#            if( data == 'employee_id_error')#}
+        {#                $('#recipient_num_error').css('display','block');#}
+        {#            else if(data == 'publisher_id_error'){#}
+        {#                $('#publisher_num_error').css('display','block');#}
+        {#            }#}
+        {#            else if(data == 'topic_error'){#}
+        {#                $('#topic_error').css('display','block');#}
+        {#            }#}
+        {#            else if(data == 'content_error'){#}
+        {#                $('#content_error').css('display','block')#}
+        {#            }#}
+        {#            else{#}
+        {#                $('#tip').html("<span style='color:green'>Success</span>")#}
+        {#                $('#add_recipient').val("")#}
+        {#                $('#add_publisher').val({{ user }})#}
+        {#                $('#Topic').val("");#}
+        {#                $('#content').val("");#}
+        {#                window.location.reload()#}
+        {#            }#}
+        {##}
+        {#        })#}
+        {#})#}
+        {#    $('#close_add').click(function () {#}
+        {#        $('#add_recipient').val("")#}
+        {#        $('#add_publisher').val({{ user }})#}
+        {#        $('#Topic').val("");#}
+        {#        $('#content').val("");#}
+        {#})#}
+        function add(id) {
+            var employee_id = $('#add_recipient').val()
+                var publisher_id = $('#add_publisher').val()
+                var topic = $('#Topic').val()
+                var content = $('#content').val()
+                $.get('{% url "Employee:employ_update_todo_list" %}',{'employee_id':employee_id,'publisher_id':publisher_id,'topic':topic,
+                    'content':content},function (data) {
+                    if( data == 'employee_id_error')
+                        $('#recipient_num_error').css('display','block');
+                    else if(data == 'publisher_id_error'){
+                        $('#publisher_num_error').css('display','block');
+                    }
+                    else if(data == 'topic_error'){
+                        $('#topic_error').css('display','block');
+                    }
+                    else if(data == 'content_error'){
+                        $('#content_error').css('display','block')
+                    }
+                    else{
+                        $('#tip').html("<span style='color:green'>Success</span>")
+                        $('#add_recipient').val("")
+                        $('#add_publisher').val(id)
+                        $('#Topic').val("");
+                        $('#content').val("");
+                        window.location.reload()
+                    }
+
+                })
+        }
+        function close_add(id) {
+                $('#add_recipient').val("")
+                $('#add_publisher').val(id)
+                $('#Topic').val("");
+                $('#content').val("");
+        }
+        function read(id) {
+            var todo_id = id
+            var str1 = '#is_read_'+ id
+            var str2 = '#not_is_read_' + id
+            $.get('{% url "Employee:employ_update_todo_list_read" %}',{'id':id},function (data) {
+
+                if(data == 'True'){
+                    $(str1).attr("class", "btn btn-primary btn-xs");
+                    $(str1).attr('disabled','disabled');
+                    $(str2).attr("class", "btn btn-white btn-xs");
+                    $(str2).removeAttr('disable');
+                    console.log(str1);
+                }
+                else {
+                    $(str2).removeClass("btn-white").addClass(("btn-primary"));
+                    $(str2).attr('disabled','disabled');
+                    $(str1).removeClass("btn-primary").addClass(("btn-white"));
+                    $(str1).removeAttr('disable');
+                    console.log(str2);
+                }
+                    window.location.reload()
+                })
+        }
+        function close_tod(id) {
+            var num = id;
+            $.get('{% url "Employee:employ_delete_todo_list" %}',{"id":id},function (data) {
+
+            })
+        }
+
+        function completed(id) {
+            var num = id;
+            var str1 = "#complete_"+id
+            var str2 = "#not_complete_"+id
+            $.get('{% url "Employee:employ_complete_todo_list" %}',{"id":id},function (data) {
+                if(data=='True'){
+                    $(str2).css('display','none')
+                    $(str1).css('display','inline-block')
+                }
+                else{
+                    $(str1).css('display','none')
+                    $(str2).css('display','inline-block')
+
+                }
+            })
+        }
+    </script>
+{% endblock %}

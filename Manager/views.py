@@ -269,3 +269,110 @@ def update_my_info(request):
 
     auth.logout(request)
     return HttpResponse('ok')
+
+
+def ToDo_List(request):
+    name = models.Employee.objects.get(num=request.user.username).name
+    position = models.Employee.objects.get(num=request.user.username).position
+    num = request.user.username
+    ToDoList_new = models.To_doList.objects.filter(employee__num=request.user.username,Is_read=False).count()
+    Audit_new = models.Step_parent.objects.filter(sender__num=request.user.username, is_send=False).count()
+    todoList = models.To_doList.objects.filter(employee__num=request.user.username)
+    for item in todoList:
+        print(item)
+
+    ids = []
+
+    length = len(todoList)
+
+    res = []
+    count = 0
+    temp = {}
+    temp_2 = []
+    for i in range(len(todoList)):
+        if count == 3:
+            res.append(temp_2)
+            temp_2 = []
+            count = 0
+        print(todoList[i])
+        publisher_name = models.Employee.objects.filter(num=todoList[i].publisher.num).values('name')[0]['name']
+        temp.update({'publish_time':todoList[i].Publish_time})
+        temp.update({'publisher_name':publisher_name})
+        temp.update({'topic':todoList[i].topic})
+        temp.update({'content':todoList[i].content})
+        temp.update({'read':todoList[i].Is_read})
+        temp.update({'id':todoList[i].id})
+        temp.update({'is_complete':todoList[i].Is_completed})
+        ids.append(id)
+        temp_2.append(temp)
+        temp = {}
+        count += 1
+    if len(temp_2) != 0:
+        res.append(temp_2)
+    context = {
+        'ToDo_List':'active',
+        'name':name,
+        'position':position,
+        'ToDoList_new':ToDoList_new,
+        'Audit_new':Audit_new,
+        'user':num,
+        'res':res,
+    }
+    print(res)
+    return render(request,'Manager/ToDo_List.html',context)
+
+def update_todo_list(request):
+    employee_id = request.GET.get("employee_id", None)
+    publisher_id = request.GET.get("publisher_id", None)
+    topic = request.GET.get("topic", None)
+    content = request.GET.get('content', None)
+
+    print(employee_id, publisher_id, topic, content)
+    try:
+        employee = models.Employee.objects.get(num=employee_id)
+    except:
+        return HttpResponse('employee_id_error')
+    if employee_id == '':
+        return HttpResponse('employee_id_error')
+    elif publisher_id == '':
+        return HttpResponse('publisher_id_error')
+    elif topic == '':
+        return HttpResponse('topic_error')
+    elif content == '':
+        return HttpResponse('content_error')
+
+    employee = models.Employee.objects.get(num=employee_id)
+    publisher = models.Employee.objects.get(num=publisher_id)
+    info = {
+        'publisher': publisher,
+        'employee': employee,
+        'content': content,
+        'topic': topic,
+    }
+
+    s = models.To_doList.objects.create(**info)
+    return HttpResponse('ok')
+
+def Audit(request):
+    name = models.Employee.objects.get(num=request.user.username).name
+    position = models.Employee.objects.get(num=request.user.username).position
+    num = request.user.username
+    ToDoList_new = models.To_doList.objects.filter(employee__num=request.user.username, Is_read=False).count()
+    Audit_new = models.Step_parent.objects.filter(sender__num=request.user.username, is_send=False).count()
+
+    Audits = models.Audit.objects.filter(manager__num=num)
+
+    step_parents = []
+    for item in Audits:
+        step_parents.append(item.content)
+    print(step_parents)
+    context = {
+        'Audit':'active',
+        'name':name,
+        'position':position,
+        'ToDoList_new':ToDoList_new,
+        'Audit_new':Audit_new,
+        'parents':step_parents,
+        'count':Audits.count(),
+    }
+    return render(request,'Manager/manager_audit.html',context)

@@ -29,4 +29,11 @@ urlpatterns = [
 
     path('edit_my_info',views.edit_my_info,name='manager_edit_my'),
     path('update_my_info',views.update_my_info,name='manager_update_my'),
+
+    path('todo_list/',views.ToDo_List,name='manager_ToDo_List'),
+    path('update_todo_list', views.update_todo_list, name='manager_update_todo_list'),
+    # path('update_todo_list_read', views.todo_list_read, name='manager_update_todo_list_read'),
+    # path('delete_update_todo_list', views.delete_todo_list, name='manager_delete_todo_list'),
+    # path('completed_todo_list', views.complete_todo_list, name='manager_complete_todo_list'),
+    path('audit/',views.Audit,name='manager_edit_audit')
 ]

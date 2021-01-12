@@ -102,6 +102,6 @@ class Audit(models.Model):
     manager = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="管理员")
 
     def __str__(self):
-        return self.name
+        return str(self.num)
     class Meta:
         verbose_name = verbose_name_plural = '审核表'

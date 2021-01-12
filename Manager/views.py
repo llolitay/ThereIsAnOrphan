@@ -25,7 +25,12 @@ def index(request):
     todo_list = models.To_doList.objects.filter(employee__num=user, Is_read=False)
     ToDoList_new = models.To_doList.objects.filter(employee__num=user, Is_read=False).count()
     Audit_new = models.Step_parent.objects.filter(sender__num=user, is_send=False).count()
-    Audit = models.Step_parent.objects.filter(sender__num=user, is_send=False)
+    Audit = models.Audit.objects.filter(manager__num=user, Is_audited=False)
+    Audit_new = models.Audit.objects.filter(manager__num=user, Is_audited=False).count
+    step = []
+    for item in Audit:
+        step.append(item.content)
+    print(step)
     context = {
         'res': res,
         'ToDoList_new': ToDoList_new,
@@ -34,7 +39,7 @@ def index(request):
         'Index': 'active',
         'ToDoList': todo_list,
         'Audit_new': Audit_new,
-        'Audit': Audit,
+        'Audit': step,
         'stuff':stuff,
     }
     return render(request, 'Manager/manager_index.html', context)
@@ -358,9 +363,9 @@ def Audit(request):
     position = models.Employee.objects.get(num=request.user.username).position
     num = request.user.username
     ToDoList_new = models.To_doList.objects.filter(employee__num=request.user.username, Is_read=False).count()
-    Audit_new = models.Step_parent.objects.filter(sender__num=request.user.username, is_send=False).count()
+    Audit_new = models.Audit.objects.filter(manager__num=num,Is_audited=False).count
 
-    Audits = models.Audit.objects.filter(manager__num=num)
+    Audits = models.Audit.objects.filter(manager__num=num,Is_audited=False)
 
     step_parents = []
     for item in Audits:
@@ -376,3 +381,8 @@ def Audit(request):
         'count':Audits.count(),
     }
     return render(request,'Manager/manager_audit.html',context)
+
+def approve(request):
+    num = request.GET.get('num',None)
+    res = models.Audit.objects.filter(content__num=num).update(Is_audited=True)
+    return HttpResponse('ok')

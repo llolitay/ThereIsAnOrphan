@@ -23,7 +23,10 @@
                                                         <td>{{ item.name }}</td>
                                                         <td> {{ item.address }}</td>
                                                         <td> {{ item.tele }}</td>
-                                                        <td class="client-status"><a href="#" id=""><span class="label label-primary">查看</span></a></td>
+                                                        <td class="client-status"><a href="#" onclick="see('{{ item.num }}','{{ item.name }}',
+                                                           '{{ item.gender }}','{{ item.age }}','{{ item.edu }}','{{ item.weight }}',
+                                                            '{{ item.married }}','{{ item.Has_child }}','{{ item.address }}',
+                                                                '{{ item.tele }}')"><span class="label label-primary">查看</span></a></td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
@@ -42,59 +45,62 @@
 
                         <div class="ibox-content">
                             <div class="tab-content">
+                                    <div class="row m-b-lg">
+                                        <div class="col-lg-4 text-center">
+                                            <h2 id="name">Nicki Smith</h2>
+
+                                        </div>
+                                    </div>
                                 <div id="contact-1" class="tab-pane active">
                                     <div class="client-detail">
                                     <div class="full-height-scroll">
 
-                                        <strong>详细信息</strong>
-
                                         <ul class="list-group clear-list">
-                                            <li class="list-group-item fist-item" style="margin-top: 30px">
+                                            <li class="list-group-item fist-item" >
                                                 <span class="float-right" id="num"> 09:00 pm </span>
-                                                Please contact me
-                                            </li>
-                                            <li class="list-group-item" style="margin-top: 15px">
-                                                <span class="float-right" id="name"> 10:16 am </span>
-                                                Sign a contract
+                                                身份证号
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="gender"> 08:22 pm </span>
-                                                Open new shop
+                                                性别
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="age"> 11:06 pm </span>
-                                                Call back to Sylvia
+                                                年龄
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="edu"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                学历
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="weight"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                体重
                                             </li>
-                                            <li class="list-group-item" style="margin-top: 15px"
+                                            <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="married"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                是否已婚
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="Has_child"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                是否有孩子
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="address"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                地址
                                             </li>
                                             <li class="list-group-item" style="margin-top: 15px">
                                                 <span class="float-right" id="tele"> 12:00 am </span>
-                                                Write a letter to Sandra
+                                                联系方式
                                             </li>
                                         </ul>
+                                        <button type="button" onclick="approve(this.id)" id="test_btn" class="btn btn-primary btn-sm btn-block"> Approved
+                                            </button>
                                     </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -103,17 +109,46 @@
     <script>
         $(document).ready(function(){
 
-            $('#num').val("");
-            $('#name').val("");
-            $('#age').val("");
-            $('#edu').val("");
-            $('#weight').val("");
-            $('#gender').val("");
-            $('#tele').val("");
-            $('#address').val("");
-            $('#married').val("");
-            $('#Has_child').val("");
+            $('#num').text("");
+            $('#name').text("");
+            $('#age').text("");
+            $('#edu').text("");
+            $('#weight').text("");
+            $('#gender').text("");
+            $('#tele').text("");
+            $('#address').text("");
+            $('#married').text("");
+            $('#Has_child').text("");
 
        });
+        function see(id,name,gender,age,edu,weight,married,Has_child,address,tele) {
+            $('#num').text(id)
+            $('#name').text(name)
+            $('#gender').text(gender)
+            $('#age').text(age)
+            $('#edu').text(edu)
+            $('#weight').text(weight)
+            if(married == 'False'){
+                $('#married').text('否')
+            }
+            else{
+                $('#married').text('是')
+            }
+            if(Has_child == 'False'){
+                $('#Has_child').text('否')
+            }
+            else{
+                $('#Has_child').text('是')
+            }
+            $('#address').text(address)
+            $('#tele').text(tele)
+            $('#test_btn').attr('id',id)
+        }
+
+    function approve(num) {
+        $.get("{% url 'Manager:manager_approve' %}",{'num':num},function (data) {
+            window.location.reload()
+        })
+    }
     </script>
 {% endblock %}

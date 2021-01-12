@@ -35,5 +35,6 @@ urlpatterns = [
     # path('update_todo_list_read', views.todo_list_read, name='manager_update_todo_list_read'),
     # path('delete_update_todo_list', views.delete_todo_list, name='manager_delete_todo_list'),
     # path('completed_todo_list', views.complete_todo_list, name='manager_complete_todo_list'),
-    path('audit/',views.Audit,name='manager_edit_audit')
+    path('audit/',views.Audit,name='manager_edit_audit'),
+    path('approve/',views.approve,name='manager_approve'),
 ]

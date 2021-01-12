@@ -15,4 +15,8 @@ urlpatterns = [
     path('update_todo_list',views.update_todo_list,name='employ_update_todo_list'),
     path('update_todo_list_read',views.todo_list_read,name='employ_update_todo_list_read'),
     path('delete_update_todo_list',views.delete_todo_list,name='employ_delete_todo_list'),
+    path('completed_todo_list',views.complete_todo_list,name='employ_complete_todo_list'),
+
+    path('audit/',views.Audit,name='employee_audit'),
+    path('alter_audit',views.add_audit,name='employee_edit_audit'),
 ]

@@ -1,0 +1,174 @@
+{% extends 'Employee/employee_index_base.html' %}
+{% block main %}
+{% load filters %}
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+                    <div class="col-lg-12">
+                         <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Children under your supervise</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                    <thead>
+                    <tr>
+                        <th>身份证</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>学历</th>
+                        <th>体重</th>
+                        <th>是否已婚</th>
+                        <th>是否有孩子</th>
+                        <th>地址</th>
+                        <th>电话</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                        {% for item in res %}
+                            <tr>
+                                <td>{{ item.num }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.gender }}</td>
+                                <td>{{ item.age }}</td>
+                                <td>{{ item.edu }}</td>
+                                <td>{{ item.weight }}</td>
+                                {% if item.married is False %}
+                                    <td>否</td>
+                                {% else %}
+                                    <td>是</td>
+                                {% endif %}
+                                {% if item.Has_child is False %}
+                                    <td>否</td>
+                                {% else %}
+                                    <td>是</td>
+                                {% endif %}
+                                <td>{{ item.address }}</td>
+                                <td>{{ item.tele }}</td>
+                                {% if item.is_send is False %}
+                                    <td><a  style="color: green" id="startmodal" data-toggle="modal" data-target="#Modal" href="#"
+                                        onclick="values('{{ user }}','{{ item.num }}')">未发送</a>
+                                    </td>
+                                    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">提交审批</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-11 order-md-1 offset-md-1">
+                                                            <div class="row">
+                                                                <div class="col-lg-5">
+                                                                    <label for="lastName">我的编号</label>
+                                                                    <input disabled="disabled" name="employee_num" type="text" class="form-control" id="employee_num" value="{{ item.num }}" required="">
+                                                                    <div class="invalid-feedback">
+                                                                        Valid Name is required.
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-5">
+                                                                    <label for="lastName">管理员编号</label>
+                                                                    <input name="manager_num" type="text" class="form-control" id="manager_num" value="" required="">
+                                                                    <div id="manager_error" class="invalid-feedback">
+                                                                         Valid Number is required.
+                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row col-md-11" style="margin-top: 10px">
+                                                                <label>申请人身份证号</label>
+                                                                <input  disabled="disabled" name="step_num" type="text" class="form-control" id="step_num" value="{{ item.enter_time }}">
+                                                                <div class="invalid-feedback">
+                                                                  Valid Name is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                              <div class="modal-footer">
+                                                  <span id="tip"> </span>
+                                                <button id="close_form" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button id="save_form" type="button" class="btn btn-primary">Send</button>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% else %}
+                                    <td style="color: gray">已发送</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>身份证</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>学历</th>
+                        <th>体重</th>
+                        <th>是否已婚</th>
+                        <th>是否有孩子</th>
+                        <th>地址</th>
+                        <th>电话</th>
+                    </tr>
+                    </tfoot>
+                    </table>
+                        </div>
+
+                    </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function(){
+            $('#Modal').modal("hide");
+            });
+
+        function values(v1,v2){
+            $('#employee_num').val(v1)
+            $('#step_num').val(v2)
+            $('#manager_num').val("")
+
+        }
+        $('#close_form').click(function () {
+            $('#employee_num').val("")
+            $('#step_num').val("")
+            $('#manager_num').val("")
+        })
+
+        $('#save_form').click(function () {
+            var employee_num = $('#employee_num').val()
+            var step_num = $('#step_num').val()
+            var manage_num = $('#manager_num').val()
+
+            $.get('{% url  'Employee:employee_edit_audit'%}',{'employee_num':employee_num,'step_num':step_num,'manager_num':manage_num},function (data) {
+                if (data == 'manage_error'){
+                    $('#manager_error').css('display','block')
+                }
+                else{
+                    $('#tip').html("<span style='color:green'>Success</span>")
+                    window.location.reload()
+                }
+            })
+    })
+    </script>
+{% endblock %}

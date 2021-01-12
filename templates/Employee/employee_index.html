@@ -40,6 +40,45 @@
             </div>
         </div>
         </div>
+        <div class="col-lg-4">
+            <div class="ibox ">
+                            <div class="ibox-title">
+                                <h5>Your Audit</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content ibox-heading">
+                                <h3><i class="fa fa-envelope-o"></i> New Audit</h3>
+                                <small><i class="fa fa-tim"></i> You have {{ Audit_new }} new Audits</small>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="feed-activity-list">
+
+                                    {% for item in Audit %}
+
+                                        <div class="feed-element">
+                                            <div>
+                                                <strong>{{ item.name }}</strong>
+                                                <div style="margin-left: 20px">
+                                                    <div>身份证号: {{ item.num }}</div>
+                                                    <div>电话: {{ item.tele }}</div>
+                                                </div>
+                                                <small class="text-muted">现住{{ item.address }}</small>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+        </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">

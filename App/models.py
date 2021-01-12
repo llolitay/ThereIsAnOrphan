@@ -68,22 +68,6 @@ class To_doList(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = '待办表'
 
-class Audit(models.Model):
-
-    num = models.CharField(verbose_name='申请编号', max_length=18, blank=False, unique=True, null=False, primary_key=True)
-    content = models.CharField(verbose_name='内容', max_length=500, blank=False, null=False)
-    Is_audited = models.BooleanField(verbose_name='是否已审核', default=False)
-    #可能是外人可能是员工
-    #外人填身份证号，员工/儿童填num
-    applicant = models.CharField(verbose_name='申请者', max_length=18, blank=False, null=False,default="申请者")
-
-    #管理员审核通过
-    manager = models.ForeignKey(Employee,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-    class Meta:
-        verbose_name = verbose_name_plural = '审核表'
 
 class Step_parent(models.Model):
 
@@ -97,8 +81,27 @@ class Step_parent(models.Model):
     Has_child = models.BooleanField(verbose_name='是否已有子女',default=False,blank=False,null=False)
     address = models.CharField(verbose_name='地址',max_length = 20,default='无')
     tele = models.CharField(verbose_name='联系电话',max_length=20,default='无')
-
+    is_send = models.BooleanField(verbose_name='是否已发送',default=False)
+    #养父母将资料发送给某个员工
+    sender = models.ForeignKey(Employee,on_delete=models.SET_NULL,null=True)
     def __str__(self):
         return self.name
     class Meta:
         verbose_name = verbose_name_plural = '领养人资料表'
+
+class Audit(models.Model):
+
+    num = models.AutoField(verbose_name='申请编号', max_length=18, blank=False, unique=True, null=False, primary_key=True)
+    content = models.ForeignKey(Step_parent,on_delete=models.CASCADE)
+    Is_audited = models.BooleanField(verbose_name='是否已审核', default=False)
+
+    #是员工
+    applicant = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="员工")
+
+    #管理员审核通过
+    manager = models.ForeignKey(Employee,on_delete=models.CASCADE,related_name="管理员")
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = verbose_name_plural = '审核表'

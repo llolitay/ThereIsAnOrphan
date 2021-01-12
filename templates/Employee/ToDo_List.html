@@ -1,6 +1,8 @@
 {% extends 'Employee/employee_index_base.html' %}
 {% block main %}
+    {% load staticfiles %}
     {% load filters %}
+    <script src="{% static 'js/jquery.js' %}"></script>
     <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <a id="startmodal" data-toggle="modal" data-target="#Modal" href="#">
@@ -104,8 +106,13 @@
                     <div class="col-md-6">
                         <div class="small text-right">
                             <h5>Stats:</h5>
-                            <div> <i class="fa fa-comments-o"> </i> 56 comments </div>
-                            <i class="fa fa-eye"> </i> 144 views
+                            {% if item|get_item:'is_complete' == True %}
+                                <button  class="btn btn-primary btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="complete_{{ item|get_item:'id' }}" style="display: inline-block" type="button">已完成</button>
+                                <button class="btn btn-danger btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="not_complete_{{ item|get_item:'id' }}" style="display: none" type="button">未完成</button>
+                            {% else %}
+                                <button class="btn btn-primary btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="complete_{{ item|get_item:'id' }}" style="display: none" type="button">已完成</button>
+                                <button class="btn btn-danger btn-xs" onclick="completed('{{ item|get_item:'id' }}')" id="not_complete_{{ item|get_item:'id' }}" style="display: inline-block" type="button">未完成</button>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -230,13 +237,30 @@
                     $(str1).removeAttr('disable');
                     console.log(str2);
                 }
-                    {#window.location.reload()#}
+                    window.location.reload()
                 })
         }
         function close_tod(id) {
             var num = id;
             $.get('{% url "Employee:employ_delete_todo_list" %}',{"id":id},function (data) {
 
+            })
+        }
+
+        function completed(id) {
+            var num = id;
+            var str1 = "#complete_"+id
+            var str2 = "#not_complete_"+id
+            $.get('{% url "Employee:employ_complete_todo_list" %}',{"id":id},function (data) {
+                if(data=='True'){
+                    $(str2).css('display','none')
+                    $(str1).css('display','inline-block')
+                }
+                else{
+                    $(str1).css('display','none')
+                    $(str2).css('display','inline-block')
+
+                }
             })
         }
     </script>

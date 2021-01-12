@@ -1,0 +1,203 @@
+{% extends 'Manager/manager_index_base.html' %}
+{% load staticfiles %}
+{% block main %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-10 order-md-1 offset-md-1">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Update My informations</h5>
+                    </div>
+                    <div class="ibox-content">
+                    <div class="row" style="margin-bottom: 10px">
+                          <div class="col-md-3 mb-3">
+                            <label for="firstName">No.</label>
+                            <input disabled="disabled" name="num" type="text" class="form-control" id="num"  value="{{ user.num }}" required="">
+                            <div class="invalid-feedback">
+                              Number duplicated or invaild Number
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="lastName">Name</label>
+                            <input name="name" type="text" class="form-control" id="name" value="{{ user.name }}" required="">
+                            <div class="invalid-feedback" id="name_error">
+                              Valid Name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="lastName">Ethnic</label>
+                            <input name="Ethnic" type="text" class="form-control" id="ethnic_group" value="{{ user.ethnic_groups }}" required="">
+                            <div class="invalid-feedback" id="ethnic_groups_error">
+                              Valid Name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                            <label for="lastName">Gender</label>
+                            <input name="gender" type="text" class="form-control" id="gender" value="{{ user.gender }}" required="">
+                            <div class="invalid-feedback" id="gender_error">
+                              Valid Name is required.
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="mb-3" style="margin-bottom: 18px">
+                          <label for="username">Password</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">#</span>
+                            </div>
+                            <input name="password" type="password" class="form-control" id="password" value="{{ user.password }}" required="">
+                            <div class="invalid-feedback" id="password_error" style="width: 100%;">
+                              Your password is required.
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 18px">
+                          <label for="username">Comfirmed Your Password</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">#</span>
+                            </div>
+                            <input name="confirmed_password" type="password" class="form-control" id="confirmed_password" value="{{ user.password }}" required="">
+                            <div class="invalid-feedback" id="confirmed_password_error" style="width: 100%;">
+                              Your confirm password is required.
+                            </div>
+                            <div class="invalid-feedback" id="password_dont_match" style="width: 100%;">
+                              Please Comfirm your Password
+                            </div>
+                          </div>
+                        <span class="error" style="display:block;margin-top: 5px;color: red">{{ error }}</span>
+                    </div>
+                    <div class="row" style="">
+                        <div class="col-md-4 mb-3">
+                            <label for="lastName">Education</label>
+                            <input name="edu" type="text" class="form-control" id="edu" value="{{ user.edu }}" required="">
+                            <div class="invalid-feedback" id="edu_error">
+                              Education is required.
+                            </div>
+                          </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="lastName">Age</label>
+                            <input name="age" type="text" class="form-control" id="age" value="{{ user.age }}" required="">
+                            <div class="invalid-feedback" id="age_error">
+                              Age is required.
+                            </div>
+                          </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="lastName">Position</label>
+                            <input name="position" type="text" class="form-control" id="position" value="{{ user.position }}" required="">
+                            <div class="invalid-feedback" id="position_error">
+                              Position is required.
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 18px">
+                          <label for="email">Telephone</label>
+                          <input name="tele" type="text" class="form-control" id="tele" value="{{ user.tele }}">
+                          <div class="invalid-feedback" id="tele_error">
+                              Telephone is required
+                          </div>
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 18px">
+                          <label for="email">Address</label>
+                          <input name="add" type="text" class="form-control" id="address" value="{{ user.address }}">
+                          <div class="invalid-feedback" id="address_error">
+                              Address is required
+                          </div>
+                    </div>
+                    <div class="mb-3 nopadding" style="margin-bottom: 18px;margin-top: 20px">
+                        <label for="email">Brief_introduction</label>
+                          <div class="summernote"></div>
+                    </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" id="submit_my_info">Update</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </div>
+{#    <script src="{% static 'inspinia/js/inspinia.js' %}"></script>#}
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('.summernote').summernote({
+                placeholder:'无',
+            });
+
+       });
+
+        $(function () {
+            $('#password').focus(function () {
+                $('#password_error').css('display','none')
+            })
+            $('#confirmed_password').focus(function () {
+                $('#confirmed_password_error').css('display','none')
+            })
+            $('#age').focus(function () {
+                $('#age_error').css('display','none')
+            })
+            $('#tele').focus(function () {
+                $('#tele_error').css('display','none')
+            })
+            $('#name').focus(function () {
+                $('#name_error').css('display','none')
+            })
+            $('#ethnic_groups').focus(function () {
+                $('#ethnic_groups_error').css('display','none')
+            })
+            $('#gender').focus(function () {
+                $('#gender_error').css('display','none')
+            })
+            $('#edu').focus(function () {
+                $('#edu_error').css('display','none')
+            })
+            $('#position').focus(function () {
+                $('#position_error').css('display','none')
+            })
+        })
+
+        $('#submit_my_info').click(function () {
+            var str = $($('.summernote').summernote('code')).text();
+            var str_origin = $('.summernote').summernote('code')
+            var num = $('#num').val()
+            var name = $('#name').val()
+            var ethnic_group = $('#ethnic_group').val()
+            var gender = $('#gender').val()
+            var password = $('#password').val()
+            var confirmed_password = $('#confirmed_password').val()
+            var edu = $('#edu').val()
+            var age = $('#age').val()
+            var position = $('#position').val()
+            var tele = $('#tele').val()
+            var address = $('#address').val()
+
+            $.get('{% url  'Manager:manager_update_my'%}',{'str':str,'num':num,'name':name,'ethnic_group':ethnic_group,'edu':edu,
+                       'gender':gender,'password':password,'confirmed_password':confirmed_password,'age':age,'position':position,
+                        'tele':tele,'address':address,'str_origin':str_origin},function (data) {
+                if (data == 'password_dont_match'){
+                    $('#password_dont_match').css('display','block')
+                }
+                if (data == 'password_error'){
+                    $('#password_error').css('display','block')
+                }
+                if (data == 'comfirmed_password_error'){
+                    $('#confirmed_password_error').css('display','block')
+                }
+                if (data == 'age_error'){
+                    $('#age_error').css('display','block')
+                }
+                if (data == 'tele_error'){
+                    $('#tele_error').css('display','block')
+                }
+                if (data == 'address_error'){
+                    $('#address_error').css('display','block')
+                }
+                if (data == 'ok'){
+                    window.location.href = '{% url "login" %}'
+                }
+            })
+    })
+    </script>
+{% endblock %}

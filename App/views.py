@@ -29,7 +29,7 @@ def login(request):
                 return HttpResponseRedirect(reverse('Employee:employee_index'))
             elif (type == '2' and User.objects.get(username=username).is_superuser == True):
                 auth.login(request,user)
-                return render(request, 'Employee/employee_index.html', context)
+                return HttpResponseRedirect(reverse('Manager:manager_index'))
             return render(request, 'Login.html', {'num': username, 'password': password, 'type_error': 'red'})
         else:
             return render(request, 'Login.html', {'num': username, 'else_error': 'red'})

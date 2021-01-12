@@ -76,7 +76,7 @@ def edit_children(request):
         numbers = range(start, end)
 
         ToDoList_new = models.To_doList.objects.filter(employee__num=request.user.username,Is_read=False).count()
-        Audit_new = models.Step_parent.objects.filter(sender__num=user, is_send=False).count()
+        Audit_new = models.Step_parent.objects.filter(sender__num=request.user.username, is_send=False).count()
         context = {
             'res': res,
             'ToDoList_new': ToDoList_new,

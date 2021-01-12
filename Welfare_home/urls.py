@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path,include
 from App import views
 import Employee.urls as Employee_urls
+import Manager.urls as Manager_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,6 @@ urlpatterns = [
     path('CheckID/',views.CheckID,name = 'CheckID'),
     path('logout/',views.logout,name='logout'),
 
-    path('employee/',include((Employee_urls,'Employee'),namespace='Employee'))
+    path('employee/',include((Employee_urls,'Employee'),namespace='Employee')),
+    path('manager/',include((Manager_urls,'Manager'),namespace='Manager')),
 ]
